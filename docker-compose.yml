@@ -1,0 +1,24 @@
+version: '3.9'
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  indexer:
+    build: .
+    environment:
+      RPC_URL: ${RPC_URL}
+      DATABASE_URL: postgresql+asyncpg://postgres:postgres@db:5432/postgres
+      TOKEN_ADDRESS: ${TOKEN_ADDRESS}  # Matic token proxy
+    depends_on:
+      - db
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:
