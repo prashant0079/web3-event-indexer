@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "web3-indexer"
+version = "0.1.0"
+description = "Minimal Python Web3 event indexer"
+authors = ["Prashant Tyagi <tyagi.prashant0099@gmail.com>"]
+packages = [{include = "app"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "0.110.0"
+uvicorn = {extras = ["standard"], version = "0.29.0"}
+sqlmodel = "0.0.16"
+asyncpg = "0.29.0"
+python-dotenv = "1.0.1"
+web3 = "6.17.1"
+prometheus-fastapi-instrumentator = "6.1.0"
+black = "^23.9.1"
+isort = "^5.12.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
